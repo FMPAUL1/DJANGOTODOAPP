@@ -1,0 +1,24 @@
+<style>
+    form{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+    }
+    body{background-color:pink}
+    .btn{
+        background-color:green;
+        color:white;
+        padding:4px 15px;
+        border-radius:15px
+    }
+    </style>
+
+<a href="{%url 'all'%}"> Go home </a>
+<form method="POST">
+    {% csrf_token %}
+{{form}}
+<input class="btn" type="submit" value="login">
+<span> don't have an account? <a href="{% url 'register'%}"> Signup </a></span> 
+</form>

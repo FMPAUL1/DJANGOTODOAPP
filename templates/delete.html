@@ -1,0 +1,26 @@
+<style>
+    form{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+    }
+    body{background-color:pink}
+    .btn{
+        background-color:green;
+        color:white;
+        padding:4px 15px;
+        border-radius:15px
+    }
+    </style>
+
+<a href="{%url 'all'%}"> Go home </a>
+<h1> Delete page </h1>
+<form method="POST" />
+{% csrf_token %}
+<p> are you sure of deleting ? {{todo}} </p>
+
+<input class="btn" type='submit' value="submit">
+
+</form>

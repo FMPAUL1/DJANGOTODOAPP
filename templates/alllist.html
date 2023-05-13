@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="C:\Users\hp\Desktop\ATPFILES\django\ATPTODOAPP\TODO\style.css">
+        <style>
+            body{
+                background-color:pink;
+            }
+table,tr,td{
+    width:100%;
+    border:2px solid green;
+    border-collapse:collapse
+}
+a{
+    text-decoration: none;
+}
+button{
+    background-color:green;
+    color:white;
+    padding:4px 8px;
+    border-radius:15px
+}
+header{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+        </style>
+    </head>
+    <body class="body">
+
+        <header>
+            <h1 style="color:red"> ALL TODO  </h1>
+            {%if request.user.is_authenticated%}
+   <span style="color:green"> Dear: {{request.user|title}} </span>
+<form method="GET">
+<input type="text" name="search" value={{search}} >
+<button type="submit" placeholder="enter some search field"> SEARCH </button>
+</form>
+<a href="{%url 'logout'%}"> Logout </a>
+{%else%}
+<a href="{%url 'login'%}"> Login</a>
+{%endif%}
+        </header>
+        <hr>
+
+        <table>
+            <tr>
+                <th> <a href="{%url 'create' %}"> ADD LIST </a> </th>
+                <th> contact ATP @ 07080824483 </th>
+                <th>  </th>
+            </tr>
+            {%for all in todo%}
+            <tr>
+                <td> {{all}}</td>
+                <td> <a href="{%url 'update' all.id%}"> update </a></td>
+                <td> <a href="{%url 'delete' all.id %}"> Delete </a></td>
+                <td> <a href="{%url 'single' all.id%}">View </a></td>
+            </tr>
+            {%empty%}
+            <h1> No content found </h1>
+            {%endfor%}
+        </table>
+    </body>
+</html>
